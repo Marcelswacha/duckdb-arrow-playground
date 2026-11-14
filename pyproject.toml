@@ -1,0 +1,14 @@
+[project]
+name = "duckdb-arrow-playground"
+version = "0.1.0"
+description = "A tiny DuckDB + PyArrow + Parquet playground"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "duckdb>=1.1",
+    "pyarrow>=17",
+    "numpy",
+]
+
+[tool.uv]
+package = false
