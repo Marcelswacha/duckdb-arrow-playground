@@ -1,5 +1,6 @@
 SELECT
   count(DISTINCT user_id),
-  CAST(device_time AS DATE) AS day
+  --APPROX_COUNT_DISTINCT(user_id) AS unique_users,
+  day
 FROM events
 GROUP BY day

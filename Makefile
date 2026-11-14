@@ -11,7 +11,7 @@ PYTHON := $(UV) run python
 # Dataset generation
 # ------------------------------------------------------------
 
-DATASET_NAME ?= benchmark_1m
+DATASET_NAME ?= benchmark_1m_partitions
 START_DATE ?= 2025-01-01
 DAYS ?= 90
 USERS ?= 1000000
@@ -29,7 +29,7 @@ BATCH_SIZE ?= 250000
 QUERY ?= users_per_day
 THREADS ?= 4
 MEMORY_LIMIT ?= 32GB
-RUNS ?= 3
+RUNS ?= 1
 WARMUP ?= 1
 EXPLAIN ?= 0
 
