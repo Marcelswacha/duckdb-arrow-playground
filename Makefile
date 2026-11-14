@@ -11,7 +11,7 @@ PYTHON := $(UV) run python
 # Dataset generation
 # ------------------------------------------------------------
 
-DATASET_NAME ?= benchmark_1m_partitions
+DATASET_NAME ?= benchmark_1m_partitions_uuid
 START_DATE ?= 2025-01-01
 DAYS ?= 90
 USERS ?= 1000000

@@ -16,6 +16,7 @@ import os
 import re
 import shutil
 import time
+import uuid
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from datetime import date, timedelta
 from pathlib import Path
@@ -49,7 +50,7 @@ SCHEMA = pa.schema(
     [
         ("device_time", pa.timestamp("ms")),
         ("server_time", pa.timestamp("ms")),
-        ("user_id", pa.string()),
+        ("user_id", pa.uuid()),
         ("content_id", pa.int32()),
         ("language", pa.string()),
         ("country", pa.string()),
@@ -74,7 +75,7 @@ def format_duration(seconds: float) -> str:
 
 def user_id_to_uuid(user_id: int) -> str:
     """Generate a stable UUID-formatted string for each numeric user ID."""
-    return f"00000000-0000-4000-8000-{user_id:012x}"
+    return uuid.UUID(f"00000000-0000-4000-8000-{user_id:012x}")
 
 
 def choose_permutation(rng: np.random.Generator, users: int) -> tuple[int, int]:
@@ -126,7 +127,7 @@ def generate_batch(
         [
             pa.array(device_times, type=pa.timestamp("ms")),
             pa.array(server_times, type=pa.timestamp("ms")),
-            pa.array(repeated_user_ids, type=pa.string()),
+            pa.array(repeated_user_ids.tolist(), type=pa.uuid()),
             pa.array(content_ids, type=pa.int32()),
             pa.array(LANGUAGES[language_indices], type=pa.string()),
             pa.array(COUNTRIES[country_indices], type=pa.string()),
